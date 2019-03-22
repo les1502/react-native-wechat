@@ -15,4 +15,4 @@ Link the following:
 - libc++
 - libz
 
-Click "Run" at your Xcode.
+Click "Run" at your Xcode .
