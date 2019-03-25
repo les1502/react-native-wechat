@@ -330,6 +330,57 @@ catch (e) {
     throw e;
   }
 }
+
+//微信支付的方法和参数
+let datas = {
+                                partnerId: param.partnerid,  // 商家向财付通申请的商家id
+                                prepayId: param.prepayid,   // 预支付订单
+                                nonceStr: param.noncestr,   // 随机串，防重发
+                                timeStamp: param.timestamp.toString(),  // 时间戳，防重发
+                                package: param.package,    // 商家根据财付通文档填写的数据和签名
+                                sign: param.sign        // 商家根据微信开放平台文档对数据做的签名
+
+                            };
+                            Wechat.pay(datas).then((requestJson) => {
+                                //支付成功回调
+                                if (requestJson.errCode == "0") {
+                                    //回调成功处理
+                                    Toast.success('充值成功')
+                                    self._refresh();
+                                } else {
+                                    Toast.fail('充值失败')
+                                    self._cancelRecharge();
+                                }
+                            }).catch((err) => {
+                                Toast.fail('充值失败');
+                                self._cancelRecharge();
+                            })
+//微信发红包的方法
+let url = '/pages/index/welcome/welcome?from=shareRedPacket&hbb_id=' + that.state.hbb_id
+        let weixinMiniProgramShareInfo = {
+            type: 'mini',
+            title: that.state.titleValue,
+            description: '泰州好停车',
+            thumbImage:
+                "https://img.zcool.cn/community/0130685c53bf4ca801203d2245c5db.png@2o.png",
+            hdImageData:
+                "https://img.zcool.cn/community/0130685c53bf4ca801203d2245c5db.png@2o.png",
+            userName: "gh_c12c60de6e9c",
+            webpageUrl: "www.baidu.com",
+            miniProgramType: 0,
+            path: url,//小程序页面路径
+            shareTicket: false
+        }
+        Wechat.isWXAppInstalled()
+            .then((isInstalled) => {
+                if (isInstalled) {
+                    Wechat.shareToSession(weixinMiniProgramShareInfo).catch((err) => {
+                        console.log(err.message)
+                    });
+                } else {
+                    Alert.alert('请安装微信');
+                }
+            });
 ```
 
 #### shareToSession(message)
