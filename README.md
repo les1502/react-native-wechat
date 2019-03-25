@@ -37,7 +37,7 @@ And [react-native-wechat] has the following tracking data in open source world:
 <a><img width="200" src="./paySucess2.png"></a>
 <a><img width="200" src="./paySucess.jpg"></a>
 
-- 微信发红包功能效果
+- 微信分享效果
 
 <a><img width="200" src="./wechat1.png"></a>
 <a><img width="200" src="./send.png"></a>
