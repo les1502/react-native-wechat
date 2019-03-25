@@ -15,8 +15,8 @@ And [react-native-wechat] has the following tracking data in open source world:
 
 ## Table of Contents
 
-- [组件的使用场景](#use-case)
-- [组件的效果](#effect-picture)
+- [ Use Case](#use-case)
+- [Effect Picture](#effect-picture)
 - [Get Startted](#get-startted)
 - [API Documentation](#api-documentation)
 - [Installation](#installation)
@@ -28,16 +28,16 @@ And [react-native-wechat] has the following tracking data in open source world:
 
 - 微信支付
 - 微信发红包功能
-<img width="200" src="./wechat1.png">
 
 ## Effect Picture
-- 微信支付
-<img width="200" src="./wechatPay.jpg">
-<img width="200" src="./payNum.jpg">
-<img width="200" src="./paySucess2.png">
-<img width="200" src="./paySucess.png">
+- 微信支付效果
 
-- 微信发红包功能
+<a><img width="200" src="./wechatPay.jpg"></a>
+<a><img width="200" src="./payNum.jpg"></a>
+<a><img width="200" src="./paySucess2.png"></a>
+<a><img width="200" src="./paySucess.png"></a>
+
+- 微信发红包功能效果
 
 <img width="200" src="./wechat1.png">
 <img width="200" src="./send.png">
