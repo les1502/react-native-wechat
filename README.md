@@ -165,19 +165,6 @@ following fields:
 - `filePath` {String} Provide a local file if type equals `file`.
 - `fileExtension` {String} Provide the file type if type equals `file`.
 
-#### shareToTimeline(message)
-
-- `message` {ShareMetadata} This object saves the metadata for sharing
-- returns {Object}
-
-Share a `ShareMetadata` message to timeline(朋友圈) and returns:
-
-| name    | type   | description                         |
-| ------- | ------ | ----------------------------------- |
-| errCode | Number | 0 if authorization successed        |
-| errStr  | String | Error message if any error occurred |
-
-These example code need 'react-native-chat' and 'react-native-fs' plugin.
 
 
 #### shareToSession(message)
@@ -214,7 +201,7 @@ let url = '/pages/index/welcome/welcome?from=shareRedPacket&hbb_id=' + that.stat
                     Wechat.shareToSession(weixinMiniProgramShareInfo)
 				.then((requestJson) => {
 				console.log("requestJson=="+JSON.stringify(requestJson))
-				//只要微信安装并登陆 不管分享有没有成功 ，返回值requestJson都是包含"errCode":0的json数据
+				//只要微信安装登陆并跳转到了微信， 不管分享有没有成功 ，返回值requestJson都是包含"errCode":0的json数据
                             /*requestJson=={"type":"SendMessageToWX.Resp",
                              "transaction":"de221ac7-2fba-41ec-bb4e-cdf422912c35",
                              "openId":"ovUt51AOoM2BEDcY2r0ciW74dxXc",
@@ -230,17 +217,6 @@ let url = '/pages/index/welcome/welcome?from=shareRedPacket&hbb_id=' + that.stat
             });
 
 ```
-#### launchMini(params)
-
-- `params` {Object} 打开小程序的参数
-
-  - `userName` {String} 拉起的小程序的username
-
-  - `miniProgramType` {Integer} 拉起小程序的类型. 0-正式版 1-开发版 2-体验版
-
-  - `path` {String} 拉起小程序页面的可带参路径，不填默认拉起小程序首页
-
-    
 
 #### pay(payload)
 
@@ -283,6 +259,32 @@ Sends request for proceeding payment, then returns an object:
 | ------- | ------ | ----------------------------------- |
 | errCode | Number | 0 if authorization successed        |
 | errStr  | String | Error message if any error occurred |
+
+#### shareToTimeline(message)
+
+- `message` {ShareMetadata} This object saves the metadata for sharing
+- returns {Object}
+
+Share a `ShareMetadata` message to timeline(朋友圈) and returns:
+
+| name    | type   | description                         |
+| ------- | ------ | ----------------------------------- |
+| errCode | Number | 0 if authorization successed        |
+| errStr  | String | Error message if any error occurred |
+
+These example code need 'react-native-chat' and 'react-native-fs' plugin.
+
+
+#### launchMini(params)
+
+- `params` {Object} 打开小程序的参数
+
+  - `userName` {String} 拉起的小程序的username
+
+  - `miniProgramType` {Integer} 拉起小程序的类型. 0-正式版 1-开发版 2-体验版
+
+  - `path` {String} 拉起小程序页面的可带参路径，不填默认拉起小程序首页
+
 
 ## Installation
 
