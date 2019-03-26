@@ -282,9 +282,9 @@ $ npm install react-native-wechat --save
 
 #### Tutorials
 
-- [react-native-wechat微信组件的使用](http://www.jianshu.com/p/3f424cccb888)
-- [超详细React Native实现微信好友/朋友圈分享功能-Android/iOS双平台通用](http://www.jianshu.com/p/ce5439dd1f52)
-- [柳轩涤俗 - 微信登录](http://www.cnblogs.com/zhangdw/p/6194345.html)
+- [react-native-wechat组件的安装与配置步骤](http://www.jianshu.com/p/3f424cccb888)
+- [利用react-native-wechat实现实现微信好友/朋友圈分享功能-Android/iOS双平台通用](http://www.jianshu.com/p/ce5439dd1f52)
+- [利用react-native-wechat实现微信作为游戏或者app的第三方登录](http://www.cnblogs.com/zhangdw/p/6194345.html)
 
 
 
