@@ -193,9 +193,9 @@ let url = '/pages/index/welcome/welcome?from=shareRedPacket&hbb_id=' + that.stat
             title:"标题名",//红包标题
             description: '描述内容',//描述
             thumbImage://发送的红包图片链接
-                "https://img.zcool.cn/community/0130685c53bf4ca801203d2245c5db.png@2o.png",
+                "https://xcx.yizhenit.com/lsxcx/0130685c53bf4ca801203d2245c5db.png",
             hdImageData://发送的红包高清图片链接
-                "https://img.zcool.cn/community/0130685c53bf4ca801203d2245c5db.png@2o.png",
+                "https://xcx.yizhenit.com/lsxcx/0130685c53bf4ca801203d2245c5db.png",
             userName: "gh_c12c60de6e9c",//你的小程序的username
             webpageUrl: "www.baidu.com",//Required if type equals news or mini. The webpage link to share.  如果是网页或者小程序  网页地址（需要填但是没作用）
             miniProgramType: 0,//拉起小程序的类型. 0-正式版 1-开发版 2-体验版
@@ -205,8 +205,18 @@ let url = '/pages/index/welcome/welcome?from=shareRedPacket&hbb_id=' + that.stat
         Wechat.isWXAppInstalled()
             .then((isInstalled) => {
                 if (isInstalled) {
-                    Wechat.shareToSession(weixinMiniProgramShareInfo).catch((err) => {
+                    Wechat.shareToSession(weixinMiniProgramShareInfo)
+					.then((requestJson) => {
+					console.log("requestJson=="+JSON.stringify(requestJson))
+					//只要微信安装并登陆 不管分享有没有成功 ，返回值requestJson都是包含"errCode":0的json数据
+                            /*requestJson=={"type":"SendMessageToWX.Resp",
+                             "transaction":"de221ac7-2fba-41ec-bb4e-cdf422912c35",
+                             "openId":"ovUt51AOoM2BEDcY2r0ciW74dxXc",
+                            "errStr":null,"errCode":0}*/
+                        }).
+					.catch((err) => {
                         console.log(err.message)
+						//err.message==-2（微信未登录）
                     });
                 } else {
                     Alert.alert('请安装微信');
