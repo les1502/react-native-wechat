@@ -15,12 +15,34 @@ And [react-native-wechat] has the following tracking data in open source world:
 
 ## Table of Contents
 
+- [ Use Case](#use-case)
+- [Effect Picture](#effect-picture)
 - [Get Startted](#get-startted)
 - [API Documentation](#api-documentation)
 - [Installation](#installation)
 - [Community](#community)
 - [Authors](#authors)
 - [License](#license)
+
+## Use Case
+
+- 微信支付
+- 微信分享功能
+
+## Effect Picture
+- 微信支付效果
+
+<a><img width="200" src="./wechatPay.jpg"></a>
+<a><img width="200" src="./payNum.jpg"></a>
+<a><img width="200" src="./paySucess2.png"></a>
+<a><img width="200" src="./paySucess.jpg"></a>
+
+- 微信分享效果
+
+<a><img width="200" src="./wechat1.png"></a>
+<a><img width="200" src="./send.png"></a>
+<a><img width="200" src="./chat.jpg"></a>
+<a><img width="200" src="./redPackect.jpg"></a>
 
 ## Get Startted
 
@@ -152,163 +174,6 @@ Share a `ShareMetadata` message to timeline(朋友圈) and returns:
 
 These example code need 'react-native-chat' and 'react-native-fs' plugin.
 
-```js
-import * as WeChat from 'react-native-wechat';
-import fs from 'react-native-fs';
-let resolveAssetSource = require('resolveAssetSource');
-
-// Code example to share text message:
-try {
-  let result = await WeChat.shareToTimeline({
-    type: 'text', 
-    description: 'hello, wechat'
-  });
-  console.log('share text message to time line successful:', result);
-} catch (e) {
-  if (e instanceof WeChat.WechatError) {
-    console.error(e.stack);
-  } else {
-    throw e;
-  }
-}
-
-// Code example to share image url:
-// Share raw http(s) image from web will always fail with unknown reason, please use image file or image resource instead
-try {
-  let result = await WeChat.shareToTimeline({
-    type: 'imageUrl',
-    title: 'web image',
-    description: 'share web image to time line',
-    mediaTagName: 'email signature',
-    messageAction: undefined,
-    messageExt: undefined,
-    imageUrl: 'http://www.ncloud.hk/email-signature-262x100.png'
-  });
-  console.log('share image url to time line successful:', result);
-} catch (e) {
-  if (e instanceof WeChat.WechatError) {
-    console.error(e.stack);
-  } else {
-    throw e;
-  }
-}
-
-// Code example to share image file:
-try {
-  let rootPath = fs.DocumentDirectoryPath;
-  let savePath = rootPath + '/email-signature-262x100.png';
-  console.log(savePath);
-
-  /*
-   * savePath on iOS may be:
-   *  /var/mobile/Containers/Data/Application/B1308E13-35F1-41AB-A20D-3117BE8EE8FE/Documents/email-signature-262x100.png
-   *
-   * savePath on Android may be:
-   *  /data/data/com.wechatsample/files/email-signature-262x100.png
-   **/
-  await fs.downloadFile('http://www.ncloud.hk/email-signature-262x100.png', savePath);
-  let result = await WeChat.shareToTimeline({
-    type: 'imageFile',
-    title: 'image file download from network',
-    description: 'share image file to time line',
-    mediaTagName: 'email signature',
-    messageAction: undefined,
-    messageExt: undefined,
-    imageUrl: "file://" + savePath // require the prefix on both iOS and Android platform
-  });
-  console.log('share image file to time line successful:', result);
-} catch (e) {
-  if (e instanceof WeChat.WechatError) {
-    console.error(e.stack);
-  } else {
-    throw e;
-  }
-}
-
-// Code example to share image resource:
-try {
-  let imageResource = require('./email-signature-262x100.png');
-  let result = await WeChat.shareToTimeline({
-    type: 'imageResource',
-    title: 'resource image',
-    description: 'share resource image to time line',
-    mediaTagName: 'email signature',
-    messageAction: undefined,
-    messageExt: undefined,
-    imageUrl: resolveAssetSource(imageResource).uri
-  });
-  console.log('share resource image to time line successful', result);
-}
-catch (e) {
-  if (e instanceof WeChat.WechatError) {
-    console.error(e.stack);
-  } else {
-    throw e;
-  }
-}
-
-// Code example to download an word file from web, then share it to WeChat session
-// only support to share to session but time line
-// iOS code use DocumentDirectoryPath
-try {
-  let rootPath = fs.DocumentDirectoryPath;
-  let fileName = 'signature_method.doc';
-  /*
-   * savePath on iOS may be:
-   *  /var/mobile/Containers/Data/Application/B1308E13-35F1-41AB-A20D-3117BE8EE8FE/Documents/signature_method.doc
-   **/ 
-  let savePath = rootPath + '/' + fileName;
-
-  await fs.downloadFile('https://open.weixin.qq.com/zh_CN/htmledition/res/assets/signature_method.doc', savePath);
-  let result = await WeChat.shareToSession({
-    type: 'file',
-    title: fileName, // WeChat app treat title as file name
-    description: 'share word file to chat session',
-    mediaTagName: 'word file',
-    messageAction: undefined,
-    messageExt: undefined,
-    filePath: savePath,
-    fileExtension: '.doc'
-  });
-  console.log('share word file to chat session successful', result);
-} catch (e) {
-  if (e instanceof WeChat.WechatError) {
-    console.error(e.stack);
-  } else {
-    throw e;
-  }
-}
-
-//android code use ExternalDirectoryPath
-try {
-  let rootPath = fs.ExternalDirectoryPath;
-  let fileName = 'signature_method.doc';
-  /*
-   * savePath on Android may be:
-   *  /storage/emulated/0/Android/data/com.wechatsample/files/signature_method.doc
-   **/
-  let savePath = rootPath + '/' + fileName;
-  await fs.downloadFile('https://open.weixin.qq.com/zh_CN/htmledition/res/assets/signature_method.doc', savePath);
-  let result = await WeChat.shareToSession({
-    type: 'file',
-    title: fileName, // WeChat app treat title as file name
-    description: 'share word file to chat session',
-    mediaTagName: 'word file',
-    messageAction: undefined,
-    messageExt: undefined,
-    filePath: savePath,
-    fileExtension: '.doc'
-  });
-  console.log('share word file to chat session successful', result);
-}
-catch (e) {
-  if (e instanceof WeChat.WechatError) {
-    console.error(e.stack);
-  } else {
-    throw e;
-  }
-}
-```
 
 #### shareToSession(message)
 
@@ -316,6 +181,35 @@ catch (e) {
 - returns {Object}
 
 Similar to `shareToTimeline` but send message to a friend or chat group.
+
+```js
+//微信发红包的方法
+let url = '/pages/index/welcome/welcome?from=shareRedPacket&hbb_id=' + that.state.hbb_id
+        let weixinMiniProgramShareInfo = {
+            type: 'mini',//类型小程序 Could be {news|text|imageUrl|imageFile|imageResource|video|audio|file|mini}
+            title: that.state.titleValue,//红包标题
+            description: '泰州好停车',//描述
+            thumbImage://发送的红包图片链接
+                "https://img.zcool.cn/community/0130685c53bf4ca801203d2245c5db.png@2o.png",
+            hdImageData://发送的红包高清图片链接
+                "https://img.zcool.cn/community/0130685c53bf4ca801203d2245c5db.png@2o.png",
+            userName: "gh_c12c60de6e9c",//你的小程序的username
+            webpageUrl: "www.baidu.com",//Required if type equals news or mini. The webpage link to share.  如果是网页或者小程序  网页地址（需要填但是没作用）
+            miniProgramType: 0,//拉起小程序的类型. 0-正式版 1-开发版 2-体验版
+            path: url,//小程序页面路径
+            shareTicket: false //是否使用带 shareTicket 的转发
+        }
+        Wechat.isWXAppInstalled()
+            .then((isInstalled) => {
+                if (isInstalled) {
+                    Wechat.shareToSession(weixinMiniProgramShareInfo).catch((err) => {
+                        console.log(err.message)
+                    });
+                } else {
+                    Alert.alert('请安装微信');
+                }
+            });
+```
 
 #### launchMini(params)
 
@@ -339,7 +233,35 @@ Similar to `shareToTimeline` but send message to a friend or chat group.
   - `package` {String} 商家根据财付通文档填写的数据和签名
   - `sign` {String} 商家根据微信开放平台文档对数据做的签名
 - returns {Object}
+```js
 
+
+//微信支付的方法和参数
+let datas = {
+                partnerId: param.partnerid,  // 商家向财付通申请的商家id
+                prepayId: param.prepayid,   // 预支付订单
+                nonceStr: param.noncestr,   // 随机串，防重发
+                timeStamp: param.timestamp.toString(),  // 时间戳，防重发
+                package: param.package,    // 商家根据财付通文档填写的数据和签名
+                sign: param.sign        // 商家根据微信开放平台文档对数据做的签名
+
+            };
+            Wechat.pay(datas).then((requestJson) => {
+                //支付成功回调
+                if (requestJson.errCode == "0") {
+                    //回调成功处理
+                    Toast.success('充值成功')
+                    self._refresh();
+                } else {
+                    Toast.fail('充值失败')
+                    self._cancelRecharge();
+                }
+            }).catch((err) => {
+                Toast.fail('充值失败');
+                self._cancelRecharge();
+            })
+
+```
 Sends request for proceeding payment, then returns an object:
 
 | name    | type   | description                         |
@@ -355,29 +277,12 @@ $ npm install react-native-wechat --save
 
 ## Community
 
-#### IRC
-
-<a href="http://qm.qq.com/cgi-bin/qm/qr?k=cg3irEFCGxjkm2YJCt5V9OeJA1pNo5Ui"><img width="200" src="./qrcode_qq.jpg"></a>
-
 #### Tutorials
 
 - [react-native-wechat微信组件的使用](http://www.jianshu.com/p/3f424cccb888)
 - [超详细React Native实现微信好友/朋友圈分享功能-Android/iOS双平台通用](http://www.jianshu.com/p/ce5439dd1f52)
 - [柳轩涤俗 - 微信登录](http://www.cnblogs.com/zhangdw/p/6194345.html)
 
-#### Who use it
 
-<a href="https://github.com/attentiveness/reading"><img height="80" width="80" src="https://raw.githubusercontent.com/attentiveness/reading/master/Reading_Logo.png"></a>
-<a href="https://github.com/lipeiwei-szu/ReactNativeOne"><img height="80" width="80" src="http://android-artworks.25pp.com/fs08/2017/05/22/3/110_ed42e5c8f701ae26be6b0c423cb51858_con_130x130.png"></a>
 
-## Authors
 
-| GitHub        | Role    | Email                 |
-| ------------- | ------- | --------------------- |
-| [@yorkie]     | Author  | yorkiefixer@gmail.com |
-| [@xing-zheng] | Emeriti |                       |
-| [@tdzl2003]   | Emeriti | tdzl2003@gmail.com    |
-
-## License
-
-MIT
