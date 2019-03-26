@@ -27,7 +27,7 @@ And [react-native-wechat] has the following tracking data in open source world:
 ## Use Case
 
 - 微信支付
-- 微信发红包功能
+- 微信分享功能
 
 ## Effect Picture
 - 微信支付效果
