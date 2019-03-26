@@ -184,14 +184,14 @@ These example code need 'react-native-chat' and 'react-native-fs' plugin.
 - returns {Object}
 
 Similar to `shareToTimeline` but send message to a friend or chat group.
-
 ```js
+
 //微信发红包的方法
 let url = '/pages/index/welcome/welcome?from=shareRedPacket&hbb_id=' + that.state.hbb_id
         let weixinMiniProgramShareInfo = {
             type: 'mini',//类型小程序 Could be {news|text|imageUrl|imageFile|imageResource|video|audio|file|mini}
-            title: that.state.titleValue,//红包标题
-            description: '泰州好停车',//描述
+            title:"标题名",//红包标题
+            description: '描述内容',//描述
             thumbImage://发送的红包图片链接
                 "https://img.zcool.cn/community/0130685c53bf4ca801203d2245c5db.png@2o.png",
             hdImageData://发送的红包高清图片链接
@@ -212,8 +212,8 @@ let url = '/pages/index/welcome/welcome?from=shareRedPacket&hbb_id=' + that.stat
                     Alert.alert('请安装微信');
                 }
             });
-```
 
+```
 #### launchMini(params)
 
 - `params` {Object} 打开小程序的参数
@@ -253,15 +253,11 @@ let datas = {
                 //支付成功回调
                 if (requestJson.errCode == "0") {
                     //回调成功处理
-                    Toast.success('充值成功')
-                    self._refresh();
                 } else {
-                    Toast.fail('充值失败')
-                    self._cancelRecharge();
+                    //回调失败处理
                 }
             }).catch((err) => {
-                Toast.fail('充值失败');
-                self._cancelRecharge();
+                //捕获失败异常
             })
 
 ```
