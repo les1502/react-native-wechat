@@ -15,14 +15,17 @@ And [react-native-wechat] has the following tracking data in open source world:
 
 ## Table of Contents
 
-- [ Use Case](#use-case)
+- [Introduction](#introduction )
+- [Use Case](#use-case)
 - [Effect Picture](#effect-picture)
 - [Get Startted](#get-startted)
 - [API Documentation](#api-documentation)
 - [Installation](#installation)
 - [Community](#community)
-- [Authors](#authors)
-- [License](#license)
+
+## Introduction
+
+- 该组件用于调起微信app 适用于安卓和ios，应用场景目前包括微信支付和微信分享等场景
 
 ## Use Case
 
