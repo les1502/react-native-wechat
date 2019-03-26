@@ -59,7 +59,11 @@ or `async/await` to manage your dataflow.
 
 #### registerApp(appid)
 
-- `appid` {String} the appid you get from WeChat dashboard
+- `appid` {String} the appid you get from WeChat dashboard 
+-  [登录微信开发者平台获取appid , ](https://open.weixin.qq.com/)账号：les2018@163.com 密码：les1028789
+ 
+ <a><img width="200" src="./docs/images/appId.jpg"></a>
+
 - returns {Boolean} explains if your application is registered done
 
 This method should be called once globally.
@@ -181,6 +185,10 @@ These example code need 'react-native-chat' and 'react-native-fs' plugin.
 #### shareToSession(message)
 
 - `message` {ShareMetadata} This object saves the metadata for sharing
+- `userName` {String} 拉起的小程序的username
+
+<a><img width="200" src="./docs/images/username.png"></a>
+
 - returns {Object}
 
 Similar to `shareToTimeline` but send message to a friend or chat group.
