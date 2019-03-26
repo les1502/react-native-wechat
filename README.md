@@ -1,5 +1,3 @@
-<img height="200" src="./weixin.png?raw=true">
-
 # React-Native-Wechat
 
 [React Native] bridging library that integrates WeChat SDKs:
@@ -214,17 +212,17 @@ let url = '/pages/index/welcome/welcome?from=shareRedPacket&hbb_id=' + that.stat
             .then((isInstalled) => {
                 if (isInstalled) {
                     Wechat.shareToSession(weixinMiniProgramShareInfo)
-					.then((requestJson) => {
-					console.log("requestJson=="+JSON.stringify(requestJson))
-					//只要微信安装并登陆 不管分享有没有成功 ，返回值requestJson都是包含"errCode":0的json数据
+				.then((requestJson) => {
+				console.log("requestJson=="+JSON.stringify(requestJson))
+				//只要微信安装并登陆 不管分享有没有成功 ，返回值requestJson都是包含"errCode":0的json数据
                             /*requestJson=={"type":"SendMessageToWX.Resp",
                              "transaction":"de221ac7-2fba-41ec-bb4e-cdf422912c35",
                              "openId":"ovUt51AOoM2BEDcY2r0ciW74dxXc",
                             "errStr":null,"errCode":0}*/
                         }).
-					.catch((err) => {
-                        console.log(err.message)
-						//err.message==-2（微信未登录）
+				.catch((err) => {
+                       		console.log(err.message)
+				//err.message==-2（微信未登录）
                     });
                 } else {
                     Alert.alert('请安装微信');
