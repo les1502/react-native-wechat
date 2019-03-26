@@ -186,18 +186,18 @@ Similar to `shareToTimeline` but send message to a friend or chat group.
 //微信发红包的方法
 let url = '/pages/index/welcome/welcome?from=shareRedPacket&hbb_id=' + that.state.hbb_id
         let weixinMiniProgramShareInfo = {
-            type: 'mini',
-            title: that.state.titleValue,
-            description: '泰州好停车',
+            type: 'mini',//类型小程序 Could be {news|text|imageUrl|imageFile|imageResource|video|audio|file|mini}
+            title: that.state.titleValue,//红包标题
+            description: '泰州好停车',//描述
             thumbImage://发送的红包图片链接
                 "https://img.zcool.cn/community/0130685c53bf4ca801203d2245c5db.png@2o.png",
             hdImageData://发送的红包高清图片链接
                 "https://img.zcool.cn/community/0130685c53bf4ca801203d2245c5db.png@2o.png",
-            userName: "gh_c12c60de6e9c",
-            webpageUrl: "www.baidu.com",
+            userName: "gh_c12c60de6e9c",//你的小程序的username
+            webpageUrl: "www.baidu.com",//Required if type equals news or mini. The webpage link to share.  如果是网页或者小程序  网页地址（需要填但是没作用）
             miniProgramType: 0,//拉起小程序的类型. 0-正式版 1-开发版 2-体验版
             path: url,//小程序页面路径
-            shareTicket: false
+            shareTicket: false //是否使用带 shareTicket 的转发
         }
         Wechat.isWXAppInstalled()
             .then((isInstalled) => {
