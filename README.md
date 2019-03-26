@@ -32,17 +32,17 @@ And [react-native-wechat] has the following tracking data in open source world:
 ## Effect Picture
 - 微信支付效果
 
-<a><img width="200" src="./wechatPay.jpg"></a>
-<a><img width="200" src="./payNum.jpg"></a>
-<a><img width="200" src="./paySucess2.png"></a>
-<a><img width="200" src="./paySucess.jpg"></a>
+<a><img width="200" src="./docs/images/wechatPay.jpg"></a>
+<a><img width="200" src="./docs/images/payNum.jpg"></a>
+<a><img width="200" src="./docs/images/paySucess2.png"></a>
+<a><img width="200" src="./docs/images/paySucess.jpg"></a>
 
 - 微信分享效果
 
-<a><img width="200" src="./wechat1.png"></a>
-<a><img width="200" src="./send.png"></a>
-<a><img width="200" src="./chat.jpg"></a>
-<a><img width="200" src="./redPackect.jpg"></a>
+<a><img width="200" src="./docs/images/wechat1.png"></a>
+<a><img width="200" src="./docs/images/send.png"></a>
+<a><img width="200" src="./docs/images/chat.jpg"></a>
+<a><img width="200" src="./docs/images/redPackect.jpg"></a>
 
 ## Get Startted
 
