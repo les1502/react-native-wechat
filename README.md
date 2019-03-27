@@ -58,7 +58,7 @@ or `async/await` to manage your dataflow.
 #### registerApp(appid)
 
 - `appid` {String} the appid you get from WeChat dashboard 
--  [登录微信开发者平台获取appid , ](https://open.weixin.qq.com/)账号：les2018@163.com 密码：les1028789
+-  [登录微信开发者平台获取appid , ](https://open.weixin.qq.com/)
  
  <a><img width="200" src="./docs/images/appId.jpg"></a>
 
